@@ -1,57 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <groupId>org.springframework.boot</groupId>
+        <relativePath/>
+        <version>3.1.5</version> <!-- lookup parent from repository -->
+    </parent>
+
     <artifactId>spring-boot-template</artifactId>
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>openapi-generator-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <configuration>
-                            <configOptions>
-                                <apiPackage>${template-api-base-package}.api</apiPackage>
-                                <basePackage>${template-api-base-package}</basePackage>
-                                <configPackage>${template-api-base-package}.config</configPackage>
-                                <dateLibrary>java8</dateLibrary>
-                                <delegatePattern>true</delegatePattern>
-                                <generateForOpenFeign>true</generateForOpenFeign>
-                                <modelPackage>${template-api-base-package}.model</modelPackage>
-                                <useTags>true</useTags>
-                            </configOptions>
-                            <generatorName>spring</generatorName>
-                            <inputSpec>${project.basedir}/src/main/resources/openapi/server/template-api.yml</inputSpec>
-                            <library>spring-boot</library>
-                            <supportingFilesToGenerate>
-                                ApiUtil.java
-                            </supportingFilesToGenerate>
-                        </configuration>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <id>template-api</id>
-                    </execution>
-                </executions>
-                <groupId>org.openapitools</groupId>
-                <version>${openapi-generator-maven-plugin.version}</version>
-            </plugin>
-            <plugin>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <artifactId>lombok</artifactId>
-                            <groupId>org.projectlombok</groupId>
-                        </exclude>
-                    </excludes>
-                    <image>
-                        <builder>paketobuildpacks/builder-jammy-base:latest</builder>
-                    </image>
-                </configuration>
-                <groupId>org.springframework.boot</groupId>
-            </plugin>
-        </plugins>
-    </build>
+    <groupId>dev.silvasolutions</groupId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>spring-boot-template</name>
+    <description>spring-boot-template</description>
+
+    <properties>
+        <java.version>17</java.version>
+        <openapi-generator-maven-plugin.version>6.0.1</openapi-generator-maven-plugin.version>
+        <template-api-base-package>${project.groupId}.springboottemplate</template-api-base-package>
+    </properties>
     <dependencies>
         <dependency>
             <artifactId>spring-cloud-context</artifactId>
@@ -75,6 +44,11 @@
             <artifactId>spring-cloud-openfeign-core</artifactId>
             <groupId>org.springframework.cloud</groupId>
             <version>4.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-indexer</artifactId>
+            <version>6.0.13</version>
         </dependency>
 
         <dependency>
@@ -120,22 +94,61 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <description>spring-boot-template</description>
-    <groupId>dev.silvasolutions</groupId>
-    <modelVersion>4.0.0</modelVersion>
-    <name>spring-boot-template</name>
-    <parent>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <groupId>org.springframework.boot</groupId>
-        <relativePath/>
-        <version>3.1.5</version> <!-- lookup parent from repository -->
-    </parent>
-    <properties>
-        <java.version>17</java.version>
-        <openapi-generator-maven-plugin.version>6.0.1</openapi-generator-maven-plugin.version>
-        <template-api-base-package>${project.groupId}.springboottemplate</template-api-base-package>
-    </properties>
 
-    <version>0.0.1-SNAPSHOT</version>
 
+    <build>
+        <finalName>${artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>openapi-generator-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <configOptions>
+                                <apiPackage>${template-api-base-package}.api</apiPackage>
+                                <basePackage>${template-api-base-package}</basePackage>
+                                <configPackage>${template-api-base-package}.config</configPackage>
+                                <dateLibrary>java8</dateLibrary>
+                                <delegatePattern>true</delegatePattern>
+                                <generateForOpenFeign>true</generateForOpenFeign>
+                                <modelPackage>${template-api-base-package}.model</modelPackage>
+                                <useTags>true</useTags>
+                            </configOptions>
+                            <generatorName>spring</generatorName>
+                            <inputSpec>${project.basedir}/src/main/resources/openapi/server/template-api.yml</inputSpec>
+                            <library>spring-boot</library>
+                            <supportingFilesToGenerate>
+                                ApiUtil.java
+                            </supportingFilesToGenerate>
+                        </configuration>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <id>template-api</id>
+                    </execution>
+                </executions>
+                <groupId>org.openapitools</groupId>
+                <version>${openapi-generator-maven-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <artifactId>lombok</artifactId>
+                            <groupId>org.projectlombok</groupId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
