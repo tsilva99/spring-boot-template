@@ -14,8 +14,8 @@ public class TestApiDelegateImpl implements TestApiDelegate {
   @Override
   public ResponseEntity<HelloWorld> getHelloWorld() {
     var helloWorld = new HelloWorld()
-        .title("Hello World")
-        .body("I'm happy you could make it here!");
+        .title("Hey Jill")
+        .body("I hope you have a lovely day at work, and I can't wait to see you later!");
     return ResponseEntity.ok(helloWorld);
   }
 }
