@@ -1,14 +1,14 @@
 package dev.silvasolutions.springboottemplate.api;
 
 import dev.silvasolutions.springboottemplate.model.HelloWorld;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 
 /**
  * @author tsilva
  * @since NEXT_RELEASE_VERSION
  */
-@RequiredArgsConstructor
+@Component
 public class TestApiDelegateImpl implements TestApiDelegate {
 
   @Override

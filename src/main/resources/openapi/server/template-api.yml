@@ -1,10 +1,10 @@
 openapi: 3.0.3
 info:
-  title: CHANGE_ME
-  description: CHANGE_ME
+  title: Template
+  description:
   version: 1.0.0
 servers:
-  - url: /
+  - url: http://localhost:8080
 tags:
   - name: "Test"
 paths:

@@ -101,34 +101,33 @@
         <plugins>
             <plugin>
                 <artifactId>openapi-generator-maven-plugin</artifactId>
+                <groupId>org.openapitools</groupId>
+                <version>${openapi-generator-maven-plugin.version}</version>
                 <executions>
                     <execution>
+                        <id>template-api</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
                         <configuration>
-                            <configOptions>
-                                <apiPackage>${template-api-base-package}.api</apiPackage>
-                                <basePackage>${template-api-base-package}</basePackage>
-                                <configPackage>${template-api-base-package}.config</configPackage>
-                                <dateLibrary>java8</dateLibrary>
-                                <delegatePattern>true</delegatePattern>
-                                <generateForOpenFeign>true</generateForOpenFeign>
-                                <modelPackage>${template-api-base-package}.model</modelPackage>
-                                <useTags>true</useTags>
-                            </configOptions>
-                            <generatorName>spring</generatorName>
                             <inputSpec>${project.basedir}/src/main/resources/openapi/server/template-api.yml</inputSpec>
+                            <generatorName>spring</generatorName>
                             <library>spring-boot</library>
                             <supportingFilesToGenerate>
                                 ApiUtil.java
                             </supportingFilesToGenerate>
+                            <configOptions>
+                                <basePackage>${template-api-base-package}</basePackage>
+                                <configPackage>${template-api-base-package}.config</configPackage>
+                                <apiPackage>${template-api-base-package}.api</apiPackage>
+                                <modelPackage>${template-api-base-package}.model</modelPackage>
+                                <dateLibrary>java8</dateLibrary>
+                                <delegatePattern>true</delegatePattern>
+                                <useTags>true</useTags>
+                            </configOptions>
                         </configuration>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <id>template-api</id>
                     </execution>
                 </executions>
-                <groupId>org.openapitools</groupId>
-                <version>${openapi-generator-maven-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
