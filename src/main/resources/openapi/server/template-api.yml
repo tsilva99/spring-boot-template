@@ -1,0 +1,36 @@
+openapi: 3.0.3
+info:
+  title: CHANGE_ME
+  description: CHANGE_ME
+  version: 1.0.0
+servers:
+  - url: /
+tags:
+  - name: "Test"
+paths:
+  /hello-world:
+    get:
+      summary: Hello World
+      description: hello world
+      operationId: getHelloWorld
+      tags:
+        - "Test"
+      responses:
+        200:
+          $ref: '#/components/responses/GetHelloWorldResponse'
+components:
+  schemas:
+    HelloWorld:
+      type: object
+      properties:
+        title:
+          type: string
+        body:
+          type: string
+  responses:
+    GetHelloWorldResponse:
+      description: Hello World Response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/HelloWorld'
