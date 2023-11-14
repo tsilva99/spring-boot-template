@@ -2,8 +2,8 @@ steps:
   - name: 'gcr.io/cloud-builders/mvn'
     args: ['clean', 'install', '-DskipTests']
   - name: 'gcr.io/cloud-builders/docker'
-    args: [ 'build', '-t', 'us-east4-docker.pkg.dev/music-feedback-404802/music-feedback-404802/spring-boot-template', '.' ]
+    args: [ 'build', '-t', 'us-east4-docker.pkg.dev/music-feedback-404802/spring-boot-template/spring-boot-template-image', '.' ]
 images:
-  - 'us-east4-docker.pkg.dev/music-feedback-404802/music-feedback-404802/spring-boot-template'
+  - 'us-east4-docker.pkg.dev/music-feedback-404802/spring-boot-template/spring-boot-template-image'
 options:
   logging: CLOUD_LOGGING_ONLY
